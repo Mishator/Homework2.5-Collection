@@ -45,13 +45,14 @@ public class EmployeeService {
 
         if (!employees.contains(employeeForRemove)) {
             throw new EmployeeNotFoundException("Такого сотрудника нет");
-
-            employees.remove(employeeForRemove);
-            return employeeForRemove;
         }
 
-        public List<Employee> getAll () {
-            return employees;
-        }
+        employees.remove(employeeForRemove);
+        return employeeForRemove;
     }
+
+    public List<Employee> getAll() {
+        return employees;
+    }
+
 }
