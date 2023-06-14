@@ -11,6 +11,8 @@ public class Main {
         task2();
         System.out.println();
         task3();
+        System.out.println();
+        task4();
     }
 
     public static void task1() {
@@ -37,6 +39,11 @@ public class Main {
     public static void task3() {
         Set<String> uniqueWords = new HashSet<>(words);
         System.out.println(uniqueWords);
+    }
+
+    public static void task4() {
+        Set<String> uniqueWords = new HashSet<>(words);
+        System.out.println(words.size() - uniqueWords.size());
     }
 
 }
