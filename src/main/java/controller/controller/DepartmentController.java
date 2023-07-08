@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import service.service.DepartmentService;
 
+import java.util.List;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/departments")
 public class DepartmentController {
@@ -17,8 +20,8 @@ public class DepartmentController {
         this.departmentService = departmentService;
     }
 
-    @GetMapping("/max-salary")
-    public Employee withMaxSalary(@RequestParam int departmentId) {
+    @GetMapping("/max")
+    public Employee withMaxSalary(@RequestParam(name = "Id") int departmentId) {
         return departmentService.withMaxSalary(departmentId);
     }
 
@@ -26,4 +29,10 @@ public class DepartmentController {
     public Employee withMinSalary(@RequestParam int departmentId) {
         return departmentService.withMinSalary(departmentId);
     }
+
+    @GetMapping("/all")
+    public Map<Integer, List<Employee>> employeesByDepartment(@RequestParam(required = false) Integer departmentId) {
+        return departmentService.employeesByDepartment(departmentId);
+    }
+
 }
