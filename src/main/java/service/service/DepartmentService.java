@@ -25,4 +25,12 @@ public class DepartmentService {
                 .max(Comparator.comparing(Employee::getSalary))
                 .orElseThrow(() -> new EmployeeNotFoundException("Сотрудник не найден"));
     }
+
+    public Employee withMinSalary(int departmentId) {
+        Collection<Employee> employees = employeeService.getAll();
+        return employees.stream()
+                .filter(e -> e.getDepartmentId() == departmentId)
+                .min(Comparator.comparing(Employee::getSalary))
+                .orElseThrow(() -> new EmployeeNotFoundException("Сотрудник не найден"));
+    }
 }
