@@ -14,7 +14,7 @@ import java.util.Map;
 public class EmployeeService {
 
     private final Map<String, Employee> employeeByFullName = new HashMap<>();
-    private final int MAX_SIZE = 3;
+    private final int MAX_SIZE = 2;
 
     public Employee add(String firstName, String lastName) {
         if (employeeByFullName.size() >= MAX_SIZE) {
@@ -24,11 +24,9 @@ public class EmployeeService {
         Employee newEmployee = new Employee(firstName, lastName);
 
         String fullName = getFullName(newEmployee);
-        {
 
-            if (employeeByFullName.containsKey(fullName)) {
+        if (employeeByFullName.containsKey(fullName)) {
 
-            }
             throw new EmployeeAlreadyAddedException("Сотрудник " + newEmployee + " уже существует");
         }
         employeeByFullName.put(fullName, newEmployee);
@@ -41,10 +39,7 @@ public class EmployeeService {
         Employee employeeForFind = new Employee(firstName, lastName);
 
         String fullName = getFullName(employeeForFind);
-
-        if (!employeeByFullName.containsKey(fullName)) {
-            throw new EmployeeNotFoundException("Такого сотрудника нет");
-        }
+        checkExistence(fullName);
 
         return employeeByFullName.get(fullName);
     }
@@ -64,6 +59,9 @@ public class EmployeeService {
     }
 
     private void checkExistence(String fullName) {
+        if (!employeeByFullName.containsKey(fullName)) {
+            throw new EmployeeNotFoundException("Такого сотрудника нет");
+        }
         checkExistence(fullName);
     }
 
